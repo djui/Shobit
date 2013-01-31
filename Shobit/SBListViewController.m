@@ -7,7 +7,6 @@
 //
 
 #import "SBListViewController.h"
-#import "MKEntryPanel.h"
 
 @interface SBListViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
@@ -31,8 +30,6 @@
 
     // Navigation bar
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
 
     // Refresh control
     // TODO: Implement
@@ -65,13 +62,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)addNewItem:(id)sender
-{
-    [MKEntryPanel showPanelWithTitle:nil inView:self.tableView onTextEntered:^(NSString* enteredString) {
-        NSLog(@"Entered: %@", enteredString);
-    }];
 }
 
 - (void)insertNewObject:(id)sender

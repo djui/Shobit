@@ -155,36 +155,25 @@
             </objects>
             <point key="canvasLocation" x="911" y="64"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="HP7-X7-Pyu">
+            <objects>
+                <viewController id="IZf-b3-EfJ" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pbf-Np-F7g">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LkZ-4r-h3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="ArchiveAllIcon.png" width="21" height="20"/>
         <image name="PinIcon.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SBListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="archiveItems:"/>
-                <relationship kind="action" name="beginAddItemEditing:"/>
-                <relationship kind="action" name="finishAddItemEditing:"/>
-                <relationship kind="outlet" name="addItemTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="archiveButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="listTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SBStoreViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBStoreViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="forgetStore:"/>
-                <relationship kind="outlet" name="deleteStoreButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="deleteStoreButton2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="storeView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

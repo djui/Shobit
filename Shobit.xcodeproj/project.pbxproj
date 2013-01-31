@@ -12,6 +12,11 @@
 		C642863E16BA7FE9009BF019 /* ButtonRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C642863D16BA7FE9009BF019 /* ButtonRed@2x.png */; };
 		C642864116BAB161009BF019 /* ArchiveAllIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C642863F16BAB161009BF019 /* ArchiveAllIcon.png */; };
 		C642864216BAB161009BF019 /* ArchiveAllIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C642864016BAB161009BF019 /* ArchiveAllIcon@2x.png */; };
+		C642869416BAB5E5009BF019 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C642869316BAB5E5009BF019 /* QuartzCore.framework */; };
+		C642869B16BAB650009BF019 /* MKEntryPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = C642869716BAB650009BF019 /* MKEntryPanel.m */; };
+		C642869C16BAB650009BF019 /* MKEntryPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C642869816BAB650009BF019 /* MKEntryPanel.xib */; };
+		C642869D16BAB650009BF019 /* TopBar.png in Resources */ = {isa = PBXBuildFile; fileRef = C642869916BAB650009BF019 /* TopBar.png */; };
+		C642869E16BAB650009BF019 /* TopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C642869A16BAB650009BF019 /* TopBar@2x.png */; };
 		C6ADE3F416B9276100C0268B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F316B9276100C0268B /* UIKit.framework */; };
 		C6ADE3F616B9276100C0268B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F516B9276100C0268B /* Foundation.framework */; };
 		C6ADE3F816B9276100C0268B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F716B9276100C0268B /* CoreGraphics.framework */; };
@@ -58,6 +63,12 @@
 		C642863D16BA7FE9009BF019 /* ButtonRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ButtonRed@2x.png"; sourceTree = "<group>"; };
 		C642863F16BAB161009BF019 /* ArchiveAllIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveAllIcon.png; sourceTree = "<group>"; };
 		C642864016BAB161009BF019 /* ArchiveAllIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArchiveAllIcon@2x.png"; sourceTree = "<group>"; };
+		C642869316BAB5E5009BF019 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C642869616BAB650009BF019 /* MKEntryPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKEntryPanel.h; sourceTree = "<group>"; };
+		C642869716BAB650009BF019 /* MKEntryPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKEntryPanel.m; sourceTree = "<group>"; };
+		C642869816BAB650009BF019 /* MKEntryPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKEntryPanel.xib; sourceTree = "<group>"; };
+		C642869916BAB650009BF019 /* TopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopBar.png; sourceTree = "<group>"; };
+		C642869A16BAB650009BF019 /* TopBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TopBar@2x.png"; sourceTree = "<group>"; };
 		C6ADE3EF16B9276100C0268B /* Shobit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shobit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6ADE3F316B9276100C0268B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C6ADE3F516B9276100C0268B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C642869416BAB5E5009BF019 /* QuartzCore.framework in Frameworks */,
 				C6ADE44416B932E300C0268B /* MapKit.framework in Frameworks */,
 				C6ADE3F416B9276100C0268B /* UIKit.framework in Frameworks */,
 				C6ADE3F616B9276100C0268B /* Foundation.framework in Frameworks */,
@@ -122,8 +134,22 @@
 		C613DC4C16B9D1D100F057C6 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				C642869516BAB650009BF019 /* MKEntryPanel */,
 			);
 			name = lib;
+			sourceTree = "<group>";
+		};
+		C642869516BAB650009BF019 /* MKEntryPanel */ = {
+			isa = PBXGroup;
+			children = (
+				C642869616BAB650009BF019 /* MKEntryPanel.h */,
+				C642869716BAB650009BF019 /* MKEntryPanel.m */,
+				C642869816BAB650009BF019 /* MKEntryPanel.xib */,
+				C642869916BAB650009BF019 /* TopBar.png */,
+				C642869A16BAB650009BF019 /* TopBar@2x.png */,
+			);
+			name = MKEntryPanel;
+			path = lib/MKEntryPanel;
 			sourceTree = "<group>";
 		};
 		C6ADE3E416B9276100C0268B = {
@@ -150,6 +176,7 @@
 		C6ADE3F216B9276100C0268B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C642869316BAB5E5009BF019 /* QuartzCore.framework */,
 				C6ADE44316B932E300C0268B /* MapKit.framework */,
 				C6ADE3F316B9276100C0268B /* UIKit.framework */,
 				C6ADE3F516B9276100C0268B /* Foundation.framework */,
@@ -315,6 +342,9 @@
 				C642863E16BA7FE9009BF019 /* ButtonRed@2x.png in Resources */,
 				C642864116BAB161009BF019 /* ArchiveAllIcon.png in Resources */,
 				C642864216BAB161009BF019 /* ArchiveAllIcon@2x.png in Resources */,
+				C642869C16BAB650009BF019 /* MKEntryPanel.xib in Resources */,
+				C642869D16BAB650009BF019 /* TopBar.png in Resources */,
+				C642869E16BAB650009BF019 /* TopBar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +384,7 @@
 				C6ADE41216B9276100C0268B /* Shobit.xcdatamodeld in Sources */,
 				C6DF9A6416B96AC800D39CDA /* SBListViewController.m in Sources */,
 				C642863416BA75DA009BF019 /* SBStoreViewController.m in Sources */,
+				C642869B16BAB650009BF019 /* MKEntryPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

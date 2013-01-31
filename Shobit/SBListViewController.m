@@ -7,6 +7,7 @@
 //
 
 #import "SBListViewController.h"
+#import "MKEntryPanel.h"
 
 @interface SBListViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
@@ -30,6 +31,8 @@
 
     // Navigation bar
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    self.navigationItem.rightBarButtonItem = addButton;
 
     // Refresh control
     // TODO: Implement
@@ -47,21 +50,28 @@
     [self.addItemTextField setPlaceholder:nil];
 }
 
+- (IBAction)finishAddItemEditing:(id)sender {
+    [self.addItemTextField setText:nil];
+    [self.addItemTextField setPlaceholder:@"New item..."];
+}
+
 - (IBAction)archiveItems:(id)sender {
     // TOOD: Implement
     UIActionSheet *archiveItemsConfirm = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Archive items", nil];
     [archiveItemsConfirm showFromToolbar:[[self navigationController] toolbar]];
 }
 
-- (IBAction)finishAddItemEditing:(id)sender {
-    [self.addItemTextField setText:nil];
-    [self.addItemTextField setPlaceholder:@"New item..."];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)addNewItem:(id)sender
+{
+    [MKEntryPanel showPanelWithTitle:nil inView:self.tableView onTextEntered:^(NSString* enteredString) {
+        NSLog(@"Entered: %@", enteredString);
+    }];
 }
 
 - (void)insertNewObject:(id)sender

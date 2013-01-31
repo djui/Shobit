@@ -48,12 +48,18 @@
 }
 
 - (IBAction)finishAddItemEditing:(id)sender {
+    NSString *newItemText = [self.addItemTextField text];
+    
+    // Reset view
     [self.addItemTextField setText:nil];
     [self.addItemTextField setPlaceholder:@"New item..."];
+    
+    // Add items to list
+    [self insertNewObject:newItemText];
 }
 
 - (IBAction)archiveItems:(id)sender {
-    // TOOD: Implement
+    // TODO: Implement
     UIActionSheet *archiveItemsConfirm = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Archive items", nil];
     [archiveItemsConfirm showFromToolbar:[[self navigationController] toolbar]];
 }
@@ -64,7 +70,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+- (void)insertNewObject:(NSString *)text
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];

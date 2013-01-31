@@ -7,26 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C642863416BA75DA009BF019 /* SBStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C642863316BA75DA009BF019 /* SBStoreViewController.m */; };
+		C642863C16BA7D9C009BF019 /* ButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = C642863A16BA7D9C009BF019 /* ButtonRed.png */; };
+		C642863E16BA7FE9009BF019 /* ButtonRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C642863D16BA7FE9009BF019 /* ButtonRed@2x.png */; };
+		C642864116BAB161009BF019 /* ArchiveAllIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C642863F16BAB161009BF019 /* ArchiveAllIcon.png */; };
+		C642864216BAB161009BF019 /* ArchiveAllIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C642864016BAB161009BF019 /* ArchiveAllIcon@2x.png */; };
 		C6ADE3F416B9276100C0268B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F316B9276100C0268B /* UIKit.framework */; };
 		C6ADE3F616B9276100C0268B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F516B9276100C0268B /* Foundation.framework */; };
 		C6ADE3F816B9276100C0268B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F716B9276100C0268B /* CoreGraphics.framework */; };
 		C6ADE3FA16B9276100C0268B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F916B9276100C0268B /* CoreData.framework */; };
 		C6ADE40016B9276100C0268B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE3FE16B9276100C0268B /* InfoPlist.strings */; };
 		C6ADE40216B9276100C0268B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6ADE40116B9276100C0268B /* main.m */; };
-		C6ADE40616B9276100C0268B /* shobbitAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6ADE40516B9276100C0268B /* shobbitAppDelegate.m */; };
+		C6ADE40616B9276100C0268B /* SBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6ADE40516B9276100C0268B /* SBAppDelegate.m */; };
 		C6ADE40816B9276100C0268B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE40716B9276100C0268B /* Default.png */; };
 		C6ADE40A16B9276100C0268B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE40916B9276100C0268B /* Default@2x.png */; };
 		C6ADE40C16B9276100C0268B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE40B16B9276100C0268B /* Default-568h@2x.png */; };
-		C6ADE40F16B9276100C0268B /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE40D16B9276100C0268B /* MainStoryboard.storyboard */; };
 		C6ADE41216B9276100C0268B /* Shobit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6ADE41016B9276100C0268B /* Shobit.xcdatamodeld */; };
-		C6ADE41516B9276100C0268B /* shobbitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6ADE41416B9276100C0268B /* shobbitMasterViewController.m */; };
-		C6ADE41816B9276100C0268B /* shobbitDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6ADE41716B9276100C0268B /* shobbitDetailViewController.m */; };
 		C6ADE42016B9276100C0268B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE41F16B9276100C0268B /* SenTestingKit.framework */; };
 		C6ADE42116B9276100C0268B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F316B9276100C0268B /* UIKit.framework */; };
 		C6ADE42216B9276100C0268B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F516B9276100C0268B /* Foundation.framework */; };
 		C6ADE42316B9276100C0268B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F916B9276100C0268B /* CoreData.framework */; };
 		C6ADE42B16B9276100C0268B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE42916B9276100C0268B /* InfoPlist.strings */; };
 		C6ADE42E16B9276100C0268B /* ShobitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6ADE42D16B9276100C0268B /* ShobitTests.m */; };
+		C6ADE43816B927AE00C0268B /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE43716B927AE00C0268B /* AppIcon@2x.png */; };
+		C6ADE43A16B927B000C0268B /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C6ADE43916B927B000C0268B /* AppIcon.png */; };
+		C6ADE44416B932E300C0268B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE44316B932E300C0268B /* MapKit.framework */; };
+		C6DF9A6416B96AC800D39CDA /* SBListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DF9A6316B96AC800D39CDA /* SBListViewController.m */; };
+		C6E6044316B96C2A00370A18 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6E6044116B96C2A00370A18 /* MainStoryboard.storyboard */; };
+		C6E6047D16B97A0C00370A18 /* AppIcon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E6046616B97A0C00370A18 /* AppIcon-512.png */; };
+		C6E6047E16B97A0C00370A18 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E6046716B97A0C00370A18 /* AppIcon.png */; };
+		C6E6047F16B97A0C00370A18 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E6046816B97A0C00370A18 /* AppIcon@2x.png */; };
+		C6E6049216B97A0C00370A18 /* PinIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E6047B16B97A0C00370A18 /* PinIcon.png */; };
+		C6E6049316B97A0C00370A18 /* PinIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E6047C16B97A0C00370A18 /* PinIcon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +52,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C642863216BA75DA009BF019 /* SBStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBStoreViewController.h; path = ../SBStoreViewController.h; sourceTree = "<group>"; };
+		C642863316BA75DA009BF019 /* SBStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBStoreViewController.m; path = ../SBStoreViewController.m; sourceTree = "<group>"; };
+		C642863A16BA7D9C009BF019 /* ButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonRed.png; sourceTree = "<group>"; };
+		C642863D16BA7FE9009BF019 /* ButtonRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ButtonRed@2x.png"; sourceTree = "<group>"; };
+		C642863F16BAB161009BF019 /* ArchiveAllIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveAllIcon.png; sourceTree = "<group>"; };
+		C642864016BAB161009BF019 /* ArchiveAllIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArchiveAllIcon@2x.png"; sourceTree = "<group>"; };
 		C6ADE3EF16B9276100C0268B /* Shobit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shobit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6ADE3F316B9276100C0268B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C6ADE3F516B9276100C0268B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -49,23 +67,29 @@
 		C6ADE3FF16B9276100C0268B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C6ADE40116B9276100C0268B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C6ADE40316B9276100C0268B /* Shobit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shobit-Prefix.pch"; sourceTree = "<group>"; };
-		C6ADE40416B9276100C0268B /* shobbitAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shobbitAppDelegate.h; sourceTree = "<group>"; };
-		C6ADE40516B9276100C0268B /* shobbitAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shobbitAppDelegate.m; sourceTree = "<group>"; };
+		C6ADE40416B9276100C0268B /* SBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBAppDelegate.h; sourceTree = "<group>"; };
+		C6ADE40516B9276100C0268B /* SBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C6ADE40716B9276100C0268B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C6ADE40916B9276100C0268B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C6ADE40B16B9276100C0268B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C6ADE40E16B9276100C0268B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C6ADE41116B9276100C0268B /* Shobit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shobit.xcdatamodel; sourceTree = "<group>"; };
-		C6ADE41316B9276100C0268B /* shobbitMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shobbitMasterViewController.h; sourceTree = "<group>"; };
-		C6ADE41416B9276100C0268B /* shobbitMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shobbitMasterViewController.m; sourceTree = "<group>"; };
-		C6ADE41616B9276100C0268B /* shobbitDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shobbitDetailViewController.h; sourceTree = "<group>"; };
-		C6ADE41716B9276100C0268B /* shobbitDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = shobbitDetailViewController.m; sourceTree = "<group>"; };
+		C6ADE41316B9276100C0268B /* SBListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBListViewController.h; sourceTree = "<group>"; };
 		C6ADE41E16B9276100C0268B /* ShobitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShobitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6ADE41F16B9276100C0268B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		C6ADE42816B9276100C0268B /* ShobitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShobitTests-Info.plist"; sourceTree = "<group>"; };
 		C6ADE42A16B9276100C0268B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C6ADE42C16B9276100C0268B /* ShobitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShobitTests.h; sourceTree = "<group>"; };
 		C6ADE42D16B9276100C0268B /* ShobitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShobitTests.m; sourceTree = "<group>"; };
+		C6ADE43716B927AE00C0268B /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
+		C6ADE43916B927B000C0268B /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		C6ADE44316B932E300C0268B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C6DF9A6316B96AC800D39CDA /* SBListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBListViewController.m; sourceTree = "<group>"; };
+		C6E6044216B96C2A00370A18 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		C6E6046616B97A0C00370A18 /* AppIcon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-512.png"; sourceTree = "<group>"; };
+		C6E6046716B97A0C00370A18 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		C6E6046816B97A0C00370A18 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
+		C6E6047B16B97A0C00370A18 /* PinIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinIcon.png; sourceTree = "<group>"; };
+		C6E6047C16B97A0C00370A18 /* PinIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PinIcon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6ADE44416B932E300C0268B /* MapKit.framework in Frameworks */,
 				C6ADE3F416B9276100C0268B /* UIKit.framework in Frameworks */,
 				C6ADE3F616B9276100C0268B /* Foundation.framework in Frameworks */,
 				C6ADE3F816B9276100C0268B /* CoreGraphics.framework in Frameworks */,
@@ -94,9 +119,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C613DC4C16B9D1D100F057C6 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		C6ADE3E416B9276100C0268B = {
 			isa = PBXGroup;
 			children = (
+				C6ADE43916B927B000C0268B /* AppIcon.png */,
+				C6ADE43716B927AE00C0268B /* AppIcon@2x.png */,
 				C6ADE3FB16B9276100C0268B /* Shobit */,
 				C6ADE42616B9276100C0268B /* ShobitTests */,
 				C6ADE3F216B9276100C0268B /* Frameworks */,
@@ -116,6 +150,7 @@
 		C6ADE3F216B9276100C0268B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6ADE44316B932E300C0268B /* MapKit.framework */,
 				C6ADE3F316B9276100C0268B /* UIKit.framework */,
 				C6ADE3F516B9276100C0268B /* Foundation.framework */,
 				C6ADE3F716B9276100C0268B /* CoreGraphics.framework */,
@@ -128,14 +163,15 @@
 		C6ADE3FB16B9276100C0268B /* Shobit */ = {
 			isa = PBXGroup;
 			children = (
-				C6ADE40416B9276100C0268B /* shobbitAppDelegate.h */,
-				C6ADE40516B9276100C0268B /* shobbitAppDelegate.m */,
-				C6ADE40D16B9276100C0268B /* MainStoryboard.storyboard */,
-				C6ADE41316B9276100C0268B /* shobbitMasterViewController.h */,
-				C6ADE41416B9276100C0268B /* shobbitMasterViewController.m */,
-				C6ADE41616B9276100C0268B /* shobbitDetailViewController.h */,
-				C6ADE41716B9276100C0268B /* shobbitDetailViewController.m */,
+				C6E6044116B96C2A00370A18 /* MainStoryboard.storyboard */,
 				C6ADE41016B9276100C0268B /* Shobit.xcdatamodeld */,
+				C6ADE40516B9276100C0268B /* SBAppDelegate.m */,
+				C6ADE40416B9276100C0268B /* SBAppDelegate.h */,
+				C6ADE41316B9276100C0268B /* SBListViewController.h */,
+				C6DF9A6316B96AC800D39CDA /* SBListViewController.m */,
+				C642863216BA75DA009BF019 /* SBStoreViewController.h */,
+				C642863316BA75DA009BF019 /* SBStoreViewController.m */,
+				C613DC4C16B9D1D100F057C6 /* lib */,
 				C6ADE3FC16B9276100C0268B /* Supporting Files */,
 			);
 			path = Shobit;
@@ -144,6 +180,7 @@
 		C6ADE3FC16B9276100C0268B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6E6046516B97A0C00370A18 /* Images */,
 				C6ADE3FD16B9276100C0268B /* Shobit-Info.plist */,
 				C6ADE3FE16B9276100C0268B /* InfoPlist.strings */,
 				C6ADE40116B9276100C0268B /* main.m */,
@@ -172,6 +209,22 @@
 				C6ADE42916B9276100C0268B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6E6046516B97A0C00370A18 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C6E6046616B97A0C00370A18 /* AppIcon-512.png */,
+				C6E6046716B97A0C00370A18 /* AppIcon.png */,
+				C6E6046816B97A0C00370A18 /* AppIcon@2x.png */,
+				C642863F16BAB161009BF019 /* ArchiveAllIcon.png */,
+				C642864016BAB161009BF019 /* ArchiveAllIcon@2x.png */,
+				C642863A16BA7D9C009BF019 /* ButtonRed.png */,
+				C642863D16BA7FE9009BF019 /* ButtonRed@2x.png */,
+				C6E6047B16B97A0C00370A18 /* PinIcon.png */,
+				C6E6047C16B97A0C00370A18 /* PinIcon@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +272,7 @@
 		C6ADE3E616B9276100C0268B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = shobbit;
+				CLASSPREFIX = SB;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Uwe Dauernheim";
 			};
@@ -250,7 +303,18 @@
 				C6ADE40816B9276100C0268B /* Default.png in Resources */,
 				C6ADE40A16B9276100C0268B /* Default@2x.png in Resources */,
 				C6ADE40C16B9276100C0268B /* Default-568h@2x.png in Resources */,
-				C6ADE40F16B9276100C0268B /* MainStoryboard.storyboard in Resources */,
+				C6ADE43816B927AE00C0268B /* AppIcon@2x.png in Resources */,
+				C6ADE43A16B927B000C0268B /* AppIcon.png in Resources */,
+				C6E6044316B96C2A00370A18 /* MainStoryboard.storyboard in Resources */,
+				C6E6047D16B97A0C00370A18 /* AppIcon-512.png in Resources */,
+				C6E6047E16B97A0C00370A18 /* AppIcon.png in Resources */,
+				C6E6047F16B97A0C00370A18 /* AppIcon@2x.png in Resources */,
+				C6E6049216B97A0C00370A18 /* PinIcon.png in Resources */,
+				C6E6049316B97A0C00370A18 /* PinIcon@2x.png in Resources */,
+				C642863C16BA7D9C009BF019 /* ButtonRed.png in Resources */,
+				C642863E16BA7FE9009BF019 /* ButtonRed@2x.png in Resources */,
+				C642864116BAB161009BF019 /* ArchiveAllIcon.png in Resources */,
+				C642864216BAB161009BF019 /* ArchiveAllIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,10 +350,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6ADE40216B9276100C0268B /* main.m in Sources */,
-				C6ADE40616B9276100C0268B /* shobbitAppDelegate.m in Sources */,
+				C6ADE40616B9276100C0268B /* SBAppDelegate.m in Sources */,
 				C6ADE41216B9276100C0268B /* Shobit.xcdatamodeld in Sources */,
-				C6ADE41516B9276100C0268B /* shobbitMasterViewController.m in Sources */,
-				C6ADE41816B9276100C0268B /* shobbitDetailViewController.m in Sources */,
+				C6DF9A6416B96AC800D39CDA /* SBListViewController.m in Sources */,
+				C642863416BA75DA009BF019 /* SBStoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,20 +384,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		C6ADE40D16B9276100C0268B /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C6ADE40E16B9276100C0268B /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
 		C6ADE42916B9276100C0268B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C6ADE42A16B9276100C0268B /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C6E6044116B96C2A00370A18 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6E6044216B96C2A00370A18 /* en */,
+			);
+			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -413,7 +477,7 @@
 		C6ADE43516B9276100C0268B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shobit.app/Shobit";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shoibt.app/Shobit";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -463,6 +527,7 @@
 				C6ADE43316B9276100C0268B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6ADE43416B9276100C0268B /* Build configuration list for PBXNativeTarget "ShobitTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +536,7 @@
 				C6ADE43616B9276100C0268B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "shobbitAppDelegate.h"
+#import "SBAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([shobbitAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([SBAppDelegate class]));
     }
 }

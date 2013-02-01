@@ -7,11 +7,14 @@
 //
 
 #import "SBStoreViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface SBStoreViewController ()
 @property (strong, nonatomic) IBOutlet UIView *storeView;
-@property (strong, nonatomic) IBOutlet UIButton *deleteStoreButton;
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @end
+
+#define METERS_PER_MILE 1609.344
 
 @implementation SBStoreViewController
 
@@ -32,10 +35,23 @@
     // View
     [self.storeView setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
     
-    // Delete button
-    UIImage *redButtonImage = [UIImage imageNamed:@"button-red.png"];
-    [self.deleteStoreButton setBackgroundImage:redButtonImage forState:UIControlStateNormal];
-    [self.deleteStoreButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    // Map view
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    MKCoordinateRegion viewRegion = [self.mapView region];
+    NSLog(@"Center: %f,%f", viewRegion.center.latitude, viewRegion.center.longitude);
+    NSLog(@"Center: %f,%f", viewRegion.span.latitudeDelta, viewRegion.span.longitudeDelta);
+    NSLog(@"Center: %f,%f %f x %f", self.mapView.visibleMapRect.origin.x, self.mapView.visibleMapRect.origin.y, self.mapView.visibleMapRect.size.width, self.mapView.visibleMapRect.size.height);
+
+    // TODO: Download XML
+    // curl -o shops.xml -g "http://open.mapquestapi.com/xapi/api/0.6/node[shop=*][bbox=18.05404,59.308895,18.066475,59.315499]"
+
+    // TODO: Create annotations
+    // xpath = './node/tag[@k="name"]'
+    
 }
 
 - (void)didReceiveMemoryWarning

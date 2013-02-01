@@ -44,11 +44,11 @@
                             </connections>
                         </textField>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="phq-AM-6qj" detailTextLabel="12F-9f-0jD" style="IBUITableViewCellStyleValue2" id="lJ0-d7-vTF">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="phq-AM-6qj" detailTextLabel="12F-9f-0jD" style="IBUITableViewCellStyleValue2" id="lJ0-d7-vTF">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="phq-AM-6qj">
@@ -108,46 +108,17 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cJp-Vb-TZx">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="230" id="fjW-ur-IBl"/>
-                                </constraints>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUO-em-mTT">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="ySI-AQ-P2W"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal" title="Forget store">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="forgetStore:" destination="J1Z-Lt-2Y9" eventType="touchUpInside" id="4Kp-XW-hSp"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ICA" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oNG-w6-TRp">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cJp-Vb-TZx"/>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="oNG-w6-TRp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="22a-Lh-fmo"/>
-                            <constraint firstAttribute="bottom" secondItem="rUO-em-mTT" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="7I7-Nd-06v"/>
-                            <constraint firstItem="rUO-em-mTT" firstAttribute="leading" secondItem="Pgo-sv-GgO" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="JdQ-GX-86n"/>
-                            <constraint firstItem="cJp-Vb-TZx" firstAttribute="leading" secondItem="Pgo-sv-GgO" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="P1y-pH-AUd"/>
-                            <constraint firstAttribute="trailing" secondItem="rUO-em-mTT" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="TmL-4t-Vby"/>
-                            <constraint firstItem="cJp-Vb-TZx" firstAttribute="top" secondItem="oNG-w6-TRp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Vky-ci-9AA"/>
-                            <constraint firstAttribute="trailing" secondItem="cJp-Vb-TZx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cWu-97-09e"/>
-                            <constraint firstItem="oNG-w6-TRp" firstAttribute="leading" secondItem="Pgo-sv-GgO" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qQy-cQ-jWO"/>
-                            <constraint firstItem="rUO-em-mTT" firstAttribute="top" secondItem="cJp-Vb-TZx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="zid-tL-fTn"/>
+                            <constraint firstItem="cJp-Vb-TZx" firstAttribute="bottom" secondItem="Pgo-sv-GgO" secondAttribute="bottom" type="default" id="6Cc-mL-CuP"/>
+                            <constraint firstItem="cJp-Vb-TZx" firstAttribute="top" secondItem="Pgo-sv-GgO" secondAttribute="top" type="default" id="Gda-hG-8pH"/>
+                            <constraint firstItem="cJp-Vb-TZx" firstAttribute="leading" secondItem="Pgo-sv-GgO" secondAttribute="leading" type="default" id="HA2-tn-Sqe"/>
+                            <constraint firstItem="cJp-Vb-TZx" firstAttribute="trailing" secondItem="Pgo-sv-GgO" secondAttribute="trailing" type="default" id="W4S-gn-Sgd"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="deleteStoreButton" destination="rUO-em-mTT" id="Vbc-b1-4zL"/>
+                        <outlet property="mapView" destination="cJp-Vb-TZx" id="5TI-cS-fEc"/>
                         <outlet property="storeView" destination="Pgo-sv-GgO" id="jbY-dT-5T9"/>
                     </connections>
                 </viewController>
@@ -160,6 +131,31 @@
         <image name="ArchiveAllIcon.png" width="21" height="20"/>
         <image name="PinIcon.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SBListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="archiveItems:"/>
+                <relationship kind="action" name="beginAddItemEditing:"/>
+                <relationship kind="action" name="finishAddItemEditing:"/>
+                <relationship kind="outlet" name="addItemTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="archiveButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="listTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SBStoreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBStoreViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="forgetStore:"/>
+                <relationship kind="outlet" name="deleteStoreButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="storeView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

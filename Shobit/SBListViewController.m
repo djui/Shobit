@@ -18,13 +18,13 @@
 
 @implementation SBListViewController
 
-- (void)awakeFromNib
-{
+#pragma mark - Framework generals
+
+- (void)awakeFromNib {
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
@@ -39,23 +39,47 @@
 
     // Text field
     [self.addItemTextField setTextAlignment:NSTextAlignmentCenter];
+    UITapGestureRecognizer *viewTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboardOnTap:)];
+    UITapGestureRecognizer *navigationbarTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboardOnTap:)];
+    viewTapRecognizer.cancelsTouchesInView = NO;
+    navigationbarTapRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer: viewTapRecognizer];
+    [self.navigationController.navigationBar addGestureRecognizer: navigationbarTapRecognizer];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - IBActions
 
 - (IBAction)beginAddItemEditing:(id)sender {
-    [self.addItemTextField setPlaceholder:nil];
+    self.navigationItem.leftBarButtonItem.enabled = NO; // self.navigationItem.leftBarButtonItem = nil;
+    [sender setPlaceholder:nil];
 }
 
 - (IBAction)finishAddItemEditing:(id)sender {
-    NSString *newItemText = [self.addItemTextField text];
+    NSString *newItemText = [[sender text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    [self resetAddItemTextField];
     
-    // Reset view
-    [self.addItemTextField setText:nil];
-    [self.addItemTextField setPlaceholder:@"New item..."];
+    if ([newItemText length] == 0) return;
     
     // Add items to list
     [self insertNewObject:newItemText];
+}
+
+- (void)dismissKeyboardOnTap:(UITapGestureRecognizer *)tapRecognizer {
+    // Abort keyboard input
+    [[self view] endEditing: YES]; // [self.addItemTextField resignFirstResponder];
+    [self resetAddItemTextField];
+}
+
+-(void)resetAddItemTextField {
+    [self.addItemTextField setText:nil];
+    [self.addItemTextField setPlaceholder:@"New item..."];
+    self.navigationItem.leftBarButtonItem.enabled = YES; // self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (IBAction)archiveItems:(id)sender {
@@ -64,59 +88,28 @@
     [archiveItemsConfirm showFromToolbar:[[self navigationController] toolbar]];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(NSString *)text
-{
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-         // Replace this implementation with code to handle the error appropriately.
-         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-}
-
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.fetchedResultsController sections] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
         [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
@@ -131,12 +124,12 @@
     }   
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+//    // TODO: Implement data structure update
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 //    NSString *stringToMove = [[self.reorderingRows objectAtIndex:sourceIndexPath.row] retain];
 //    [self.reorderingRows removeObjectAtIndex:sourceIndexPath.row];
@@ -144,24 +137,54 @@
 //    [stringToMove release];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[tableView cellForRowAtIndexPath:indexPath] accessoryType] == UITableViewCellAccessoryCheckmark) {
+        [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType: UITableViewCellAccessoryNone];
+    } else {
+        [[tableView cellForRowAtIndexPath:indexPath] setAccessoryType: UITableViewCellAccessoryCheckmark];
+    }
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+}
+
+#pragma mark - Data code
+
+- (void)insertNewObject:(NSString *)text {
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    
+    // If appropriate, configure the new managed object.
+    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
+    [newManagedObject setValue:text forKey:@"name"];
+    [newManagedObject setValue:[NSDate date] forKey:@"timestamp"];
+    
+    // Save the context.
+    NSError *error = nil;
+    if (![context save:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
+
 #pragma mark - Fetched results controller
 
-- (NSFetchedResultsController *)fetchedResultsController
-{
+- (NSFetchedResultsController *)fetchedResultsController {
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -183,14 +206,12 @@
     return _fetchedResultsController;
 }    
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView beginUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     switch(type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
@@ -204,8 +225,7 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
-{
+      newIndexPath:(NSIndexPath *)newIndexPath {
     UITableView *tableView = self.tableView;
     
     switch(type) {
@@ -228,25 +248,46 @@
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
 
 /*
 // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
  
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
+ - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     // In the simplest, most efficient, case, reload the table view.
     [self.tableView reloadData];
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    NSString *text = [[object valueForKey:@"name"] description];
+    
+    // Split amount and title
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([0-9]+) +(.+)$" options:NSRegularExpressionSearch error:&error];
+    
+    if (error) {
+        NSLog(@"%@", error);
+    } else {
+        NSTextCheckingResult* result = [regex firstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+        
+        if (result) {
+            NSRange groupOne = [result rangeAtIndex:1];
+            NSRange groupTwo = [result rangeAtIndex:2];
+            
+            NSString *amount = [text substringWithRange:groupOne];
+            NSString *title = [text substringWithRange:groupTwo];
+
+            [cell.detailTextLabel setText:title];
+            [cell.textLabel setText:amount];
+        } else {
+            [cell.detailTextLabel setText:text];
+            [cell.textLabel setText:@" "];
+        }
+    }
 }
 
 @end

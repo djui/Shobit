@@ -12,6 +12,8 @@
 		C642864116BAB161009BF019 /* ArchiveAllIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C642863F16BAB161009BF019 /* ArchiveAllIcon.png */; };
 		C642864216BAB161009BF019 /* ArchiveAllIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C642864016BAB161009BF019 /* ArchiveAllIcon@2x.png */; };
 		C642869416BAB5E5009BF019 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C642869316BAB5E5009BF019 /* QuartzCore.framework */; };
+		C65837D216BAD72C00B8B16E /* SBStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69254A116BABEBA0046BF84 /* SBStoreViewController.m */; };
+		C65837D416BAD86000B8B16E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65837D316BAD86000B8B16E /* CoreLocation.framework */; };
 		C69254A216BABEBA0046BF84 /* SBStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69254A116BABEBA0046BF84 /* SBStoreViewController.m */; };
 		C6ADE3F416B9276100C0268B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F316B9276100C0268B /* UIKit.framework */; };
 		C6ADE3F616B9276100C0268B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6ADE3F516B9276100C0268B /* Foundation.framework */; };
@@ -58,6 +60,7 @@
 		C642863F16BAB161009BF019 /* ArchiveAllIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveAllIcon.png; sourceTree = "<group>"; };
 		C642864016BAB161009BF019 /* ArchiveAllIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ArchiveAllIcon@2x.png"; sourceTree = "<group>"; };
 		C642869316BAB5E5009BF019 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C65837D316BAD86000B8B16E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C69254A016BABEBA0046BF84 /* SBStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBStoreViewController.h; sourceTree = "<group>"; };
 		C69254A116BABEBA0046BF84 /* SBStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBStoreViewController.m; sourceTree = "<group>"; };
 		C6ADE3EF16B9276100C0268B /* Shobit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shobit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65837D416BAD86000B8B16E /* CoreLocation.framework in Frameworks */,
 				C642869416BAB5E5009BF019 /* QuartzCore.framework in Frameworks */,
 				C6ADE44416B932E300C0268B /* MapKit.framework in Frameworks */,
 				C6ADE3F416B9276100C0268B /* UIKit.framework in Frameworks */,
@@ -153,6 +157,7 @@
 		C6ADE3F216B9276100C0268B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C65837D316BAD86000B8B16E /* CoreLocation.framework */,
 				C642869316BAB5E5009BF019 /* QuartzCore.framework */,
 				C6ADE44316B932E300C0268B /* MapKit.framework */,
 				C6ADE3F316B9276100C0268B /* UIKit.framework */,
@@ -357,6 +362,7 @@
 				C6ADE40616B9276100C0268B /* SBAppDelegate.m in Sources */,
 				C6ADE41216B9276100C0268B /* Shobit.xcdatamodeld in Sources */,
 				C6DF9A6416B96AC800D39CDA /* SBListViewController.m in Sources */,
+				C65837D216BAD72C00B8B16E /* SBStoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

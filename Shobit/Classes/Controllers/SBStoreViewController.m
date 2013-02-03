@@ -6,10 +6,19 @@
 //  Copyright (c) 2013 Uwe Dauernheim. All rights reserved.
 //
 
-#import "SBStoreViewController.h"
 #import <MapKit/MapKit.h>
+#import "SBStoreViewController.h"
+#import "SBStoreLocation.h"
 #import "AFKissXMLRequestOperation.h"
+#import "MBProgressHUD.h"
 #import "DDXML.h"
+#import "DDTTYLogger.h"
+
+#ifdef DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_WARN;
+#endif
 
 @interface SBStoreViewController ()
 
@@ -29,6 +38,10 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
 }
 
 - (void)setDetailItem:(id)newDetailItem {
@@ -56,10 +69,9 @@
     [self.storeView setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
 
     // Map view
-    if (self.hasRecentMapRegion) {
-        MKCoordinateRegion region = self.retrieveRecentMapRegion;
-        [self.mapView setRegion:region animated:NO];
-    }
+    if (self.hasRecentMapRegion)
+        // Reset recent location
+        [self.mapView setRegion:self.retrieveRecentMapRegion animated:NO];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 }
 
@@ -68,6 +80,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    // Scan for shops
     [self scanRegionForShops];
 }
 
@@ -76,38 +89,61 @@ typedef void (^AFKissXMLRequestFailureBlock)(NSURLRequest *, NSHTTPURLResponse *
 
 - (void)scanRegionForShops {
     AFKissXMLRequestSuccessBlock searchShopsSuccess = ^(NSURLRequest *request, NSHTTPURLResponse *response, DDXMLDocument *xmlDoc) {
-        // NSLog(@"xmlDoc: %@", xmlDoc);
+        DDLogVerbose(@"xmlDoc: %@", xmlDoc);
+        
+        // Clean up map annotations
+        for (id<MKAnnotation> annotation in self.mapView.annotations) {
+            [self.mapView removeAnnotation:annotation];
+        }
         
         // Traverse DOM and extract shops
         NSArray *nodes = [xmlDoc.rootElement elementsForName:@"node"];
+        int amountShops = 0;
         for (DDXMLElement *node in nodes) {
-            double lat = [node attributeForName:@"lat"].stringValue.doubleValue;
-            double lon = [node attributeForName:@"lon"].stringValue.doubleValue;
+            double storeLatitude = [node attributeForName:@"lat"].stringValue.doubleValue;
+            double storeLongitude = [node attributeForName:@"lon"].stringValue.doubleValue;
             NSArray *tags = [node elementsForName:@"tag"];
             for (DDXMLElement *tag in tags) {
                 if ([[tag attributeForName:@"k"].stringValue isEqualToString:@"name"]) {
-                    NSString *name = [tag attributeForName:@"v"].stringValue;
-                    NSLog(@"Shop \"%@\" at: %f,%f", name, lat, lon);
+                    NSString *storeName = [tag attributeForName:@"v"].stringValue;
+                    DDLogVerbose(@"Store \"%@\" at: %f,%f", storeName, storeLatitude, storeLongitude);
+                    amountShops++;
+                    
+                    // Add map annotations
+                    CLLocationCoordinate2D storeCoordinate;
+                    storeCoordinate.latitude = storeLatitude;
+                    storeCoordinate.longitude = storeLongitude;                    
+                    StoreLocation *annotation = [[StoreLocation alloc] initWithName:storeName address:nil coordinate:storeCoordinate];
+                    [self.mapView addAnnotation:annotation];
                 }
             }
         }
+        
+        DDLogInfo(@"Found %d shops.", amountShops);
     };
     
     AFKissXMLRequestFailureBlock searchShopsFailure = ^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, DDXMLDocument *XMLDocument) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        DDLogError(@"%@", error);
+        DDLogWarn(@"Could not search for shops");
+        // Progress HUD
+        MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        HUD.mode = MBProgressHUDModeCustomView;
+        HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUDFailure.png"]];
+        HUD.labelText = @"Can't find stores";
+        [HUD showAnimated:YES whileExecutingBlock:^{
+            sleep(3);
+        }];
     };
-    double bottom = self.mapView.region.center.latitude;
-    double left = self.mapView.region.center.longitude;
-    double top = bottom + self.mapView.region.span.latitudeDelta;
-    double right = left + self.mapView.region.span.longitudeDelta;
+    double bottom = self.mapView.region.center.latitude - self.mapView.region.span.latitudeDelta;
+    double left = self.mapView.region.center.longitude - self.mapView.region.span.longitudeDelta;
+    double top = self.mapView.region.center.latitude + self.mapView.region.span.latitudeDelta;
+    double right = self.mapView.region.center.longitude + self.mapView.region.span.longitudeDelta;
     NSString *wsURL = [NSString stringWithFormat:@"http://open.mapquestapi.com/xapi/api/0.6/node[shop=*][bbox=%f,%f,%f,%f]", left, bottom, right, top];
-    // NSLog(@"%@", wsURL);
+    DDLogVerbose(@"%@", wsURL);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:wsURL]];
     AFKissXMLRequestOperation *operation = [AFKissXMLRequestOperation XMLDocumentRequestOperationWithRequest:request success:searchShopsSuccess failure:searchShopsFailure];
-    NSLog(@"Searching for shops...");
+    DDLogInfo(@"Searching for shops...");
     [operation start];
 }
 
@@ -128,6 +164,34 @@ typedef void (^AFKissXMLRequestFailureBlock)(NSURLRequest *, NSHTTPURLResponse *
     [deleteShopConfirm showInView:self.storeView];
 }
 
+#pragma mark - Map view
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    static NSString *identifier = @"StoreLocation";
+    if ([annotation isKindOfClass:[StoreLocation class]]) {
+        MKAnnotationView *annotationView = (MKAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (annotationView == nil) {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            [annotationView setEnabled:YES];
+            [annotationView setCanShowCallout:YES];
+            [annotationView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+            [annotationView setLeftCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeInfoDark]];
+        } else {
+            annotationView.annotation = annotation;
+        }
+        
+        return annotationView;
+    }
+    
+    return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    StoreLocation *location = (StoreLocation*)view.annotation;
+    
+    NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
+    [location.mapItem openInMapsWithLaunchOptions:launchOptions];
+}
 
 #pragma mark - Privates
 

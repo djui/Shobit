@@ -8,6 +8,15 @@
 
 #import "SBListViewController.h"
 #import "SBStoreViewController.h"
+#import "MBProgressHUD.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
+
+#ifdef DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_WARN;
+#endif
 
 @interface SBListViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
@@ -46,6 +55,17 @@
     navigationbarTapRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer: viewTapRecognizer];
     [self.navigationController.navigationBar addGestureRecognizer: navigationbarTapRecognizer];
+    
+    // Progress HUD
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+	[self.view addSubview:HUD];
+	HUD.mode = MBProgressHUDModeCustomView;
+	HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUDSuccess.png"]];
+	HUD.labelText = @"Archived";
+    [HUD showAnimated:YES whileExecutingBlock:^{
+        sleep(3);
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,7 +146,7 @@
         if (![context save:&error]) {
              // Replace this implementation with code to handle the error appropriately.
              // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            //DDLogError(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }   
@@ -163,7 +183,7 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([0-9]+) +(.+)$" options:NSRegularExpressionSearch error:&error];
     
     if (error) {
-        NSLog(@"%@", error);
+        //DDLogError(@"%@", error);
     } else {
         NSTextCheckingResult* result = [regex firstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
         
@@ -200,7 +220,7 @@
     if (![context save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        //DDLogError(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 }
@@ -236,7 +256,7 @@
 	if (![self.fetchedResultsController performFetch:&error]) {
 	     // Replace this implementation with code to handle the error appropriately.
 	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	    //DDLogError(@"Unresolved error %@, %@", error, [error userInfo]);
 	    abort();
 	}
     

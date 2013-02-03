@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface SBStoreViewController : UIViewController
+@interface SBStoreViewController : UIViewController <MKMapViewDelegate>
 
 @property (strong, nonatomic) id detailItem; // Receiver of data from list view
 

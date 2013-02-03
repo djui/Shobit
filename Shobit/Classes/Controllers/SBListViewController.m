@@ -7,6 +7,7 @@
 //
 
 #import "SBListViewController.h"
+#import "SBStoreViewController.h"
 
 @interface SBListViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
@@ -53,6 +54,13 @@
 }
 
 #pragma mark - IBActions
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showMap"]) {
+        [[segue destinationViewController] setDetailItem: @"FOOBAR"];
+    }
+}
 
 - (IBAction)beginAddItemEditing:(id)sender {
     self.navigationItem.leftBarButtonItem.enabled = NO; // self.navigationItem.leftBarButtonItem = nil;
@@ -146,6 +154,35 @@
     [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
 }
 
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *text = [[object valueForKey:@"name"] description];
+    
+    // Split amount and title
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([0-9]+) +(.+)$" options:NSRegularExpressionSearch error:&error];
+    
+    if (error) {
+        NSLog(@"%@", error);
+    } else {
+        NSTextCheckingResult* result = [regex firstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
+        
+        if (result) {
+            NSRange groupOne = [result rangeAtIndex:1];
+            NSRange groupTwo = [result rangeAtIndex:2];
+            
+            NSString *amount = [text substringWithRange:groupOne];
+            NSString *title = [text substringWithRange:groupTwo];
+            
+            [cell.detailTextLabel setText:title];
+            [cell.textLabel setText:amount];
+        } else {
+            [cell.detailTextLabel setText:text];
+            [cell.textLabel setText:@" "];
+        }
+    }
+}
+
 #pragma mark - Data code
 
 - (void)insertNewObject:(NSString *)text {
@@ -204,7 +241,9 @@
 	}
     
     return _fetchedResultsController;
-}    
+}
+
+#pragma mark - Controller
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView beginUpdates];
@@ -260,34 +299,5 @@
     [self.tableView reloadData];
 }
  */
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *text = [[object valueForKey:@"name"] description];
-    
-    // Split amount and title
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^([0-9]+) +(.+)$" options:NSRegularExpressionSearch error:&error];
-    
-    if (error) {
-        NSLog(@"%@", error);
-    } else {
-        NSTextCheckingResult* result = [regex firstMatchInString:text options:0 range:NSMakeRange(0, [text length])];
-        
-        if (result) {
-            NSRange groupOne = [result rangeAtIndex:1];
-            NSRange groupTwo = [result rangeAtIndex:2];
-            
-            NSString *amount = [text substringWithRange:groupOne];
-            NSString *title = [text substringWithRange:groupTwo];
-
-            [cell.detailTextLabel setText:title];
-            [cell.textLabel setText:amount];
-        } else {
-            [cell.detailTextLabel setText:text];
-            [cell.textLabel setText:@" "];
-        }
-    }
-}
 
 @end

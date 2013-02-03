@@ -10,4 +10,6 @@
 
 @interface SBStoreViewController : UIViewController
 
+@property (strong, nonatomic) id detailItem; // Receiver of data from list view
+
 @end

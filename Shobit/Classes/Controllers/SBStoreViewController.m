@@ -77,23 +77,16 @@ typedef void (^AFKissXMLRequestFailureBlock)(NSURLRequest *, NSHTTPURLResponse *
 - (void)scanRegionForShops {
     AFKissXMLRequestSuccessBlock searchShopsSuccess = ^(NSURLRequest *request, NSHTTPURLResponse *response, DDXMLDocument *xmlDoc) {
         // NSLog(@"xmlDoc: %@", xmlDoc);
-        NSArray *nodes = [xmlDoc.rootElement elementsForName:@"node"];
-        // NSLog(@"%@", nodes.debugDescription);
         
+        // Traverse DOM and extract shops
+        NSArray *nodes = [xmlDoc.rootElement elementsForName:@"node"];
         for (DDXMLElement *node in nodes) {
-            //DDXMLNode *lat = [node attributeForName:@"lat"];
-            //DDXMLNode *lon = [node attributeForName:@"lon"];
-            double lat = [[node valueForKey:@"lat"] doubleValue];
-            double lon = [[node valueForKey:@"lon"] doubleValue];
-            NSLog(@"lat:%f", lat);
-            NSLog(@"lon:%f", lon);
+            double lat = [node attributeForName:@"lat"].stringValue.doubleValue;
+            double lon = [node attributeForName:@"lon"].stringValue.doubleValue;
             NSArray *tags = [node elementsForName:@"tag"];
             for (DDXMLElement *tag in tags) {
-                //DDXMLNode *key = [tag attributeForName:@"k"];
-                //if ([key.stringValue isEqualToString:@"name"]) {
-                NSLog(@"foo:%@", [tag valueForKey:@"k"]);
-                if ([[tag valueForKey:@"k"] isEqualToString:@"name"]) {
-                    NSString *name = [tag valueForKey:@"v"];
+                if ([[tag attributeForName:@"k"].stringValue isEqualToString:@"name"]) {
+                    NSString *name = [tag attributeForName:@"v"].stringValue;
                     NSLog(@"Shop \"%@\" at: %f,%f", name, lat, lon);
                 }
             }

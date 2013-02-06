@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface SBListViewController : UITableViewController <NSFetchedResultsControllerDelegate, UITextFieldDelegate>
+@interface SBListViewController : UITableViewController <NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

@@ -22,6 +22,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
 @property (strong, nonatomic) IBOutlet UITextField *addItemTextField;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *archiveButton;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (readwrite) BOOL endEditing;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -62,6 +63,11 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 //    [HUD showAnimated:YES whileExecutingBlock:^{
 //        sleep(3);
 //    }];
+    
+    // Location manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +82,21 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     }
 }
 
-#pragma mark - IBActions Delegates
+#pragma mark - CLLocationManager delegate methods
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    [self updateMapZoomLocation:newLocation];
+}
+
+- (void)updateMapZoomLocation:(CLLocation *)newLocation {
+    DDLogInfo(@"%@", [newLocation description]);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    DDLogError(@"%@", [error description]);
+}
+
+#pragma mark - IBActions delegate methods
 
 - (IBAction)editingDidBegin:(id)sender {
     self.navigationItem.leftBarButtonItem.enabled = NO;

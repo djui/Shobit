@@ -37,10 +37,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                            <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             <connections>
-                                <action selector="beginAddItemEditing:" destination="12" eventType="editingDidBegin" id="Lyd-2D-oSh"/>
-                                <action selector="finishAddItemEditing:" destination="12" eventType="editingDidEndOnExit" id="w33-fN-bno"/>
+                                <action selector="didEndOnExit:" destination="12" eventType="editingDidEndOnExit" id="unb-Ou-Obi"/>
+                                <action selector="editingDidBegin:" destination="12" eventType="editingDidBegin" id="31S-N2-QmA"/>
+                                <action selector="editingDidEnd:" destination="12" eventType="editingDidEnd" id="b95-Pl-FmX"/>
                             </connections>
                         </textField>
                         <prototypes>
@@ -135,6 +136,31 @@
         <image name="ArchiveAllIcon.png" width="21" height="20"/>
         <image name="PinIcon.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SBListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="archiveItems:"/>
+                <relationship kind="action" name="didEndOnExit:"/>
+                <relationship kind="action" name="editingDidBegin:"/>
+                <relationship kind="action" name="editingDidEnd:"/>
+                <relationship kind="outlet" name="addItemTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="archiveButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="listTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SBStoreViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBStoreViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="forgetStore:"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="storeView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

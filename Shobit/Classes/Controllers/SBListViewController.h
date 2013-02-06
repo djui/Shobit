@@ -10,7 +10,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface SBListViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface SBListViewController : UITableViewController <NSFetchedResultsControllerDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

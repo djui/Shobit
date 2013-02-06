@@ -22,6 +22,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
 @property (strong, nonatomic) IBOutlet UITextField *addItemTextField;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *archiveButton;
+@property (readwrite) BOOL endEditing;
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
@@ -48,13 +49,9 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [self.tableView addSubview:refreshControl];
 
     // Text field
+    [self.addItemTextField setDelegate:self];
     [self.addItemTextField setTextAlignment:NSTextAlignmentCenter];
-    UITapGestureRecognizer *viewTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboardOnTap:)];
-    UITapGestureRecognizer *navigationbarTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboardOnTap:)];
-    viewTapRecognizer.cancelsTouchesInView = NO;
-    navigationbarTapRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer: viewTapRecognizer];
-    [self.navigationController.navigationBar addGestureRecognizer: navigationbarTapRecognizer];
+    [self.addItemTextField setAllowsEditingTextAttributes:NO];
     
     // Progress HUD
     MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -73,8 +70,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - IBActions
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showMap"]) {
@@ -82,38 +77,73 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     }
 }
 
-- (IBAction)beginAddItemEditing:(id)sender {
-    self.navigationItem.leftBarButtonItem.enabled = NO; // self.navigationItem.leftBarButtonItem = nil;
-    [sender setPlaceholder:nil];
+#pragma mark - IBActions Delegates
+
+- (IBAction)editingDidBegin:(id)sender {
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+    [[self addItemTextField] setPlaceholder:@""];
+
+    UIView *accessoryView = [self createInputAccessoryView];
+    [[self addItemTextField] setInputAccessoryView:accessoryView];
 }
 
-- (IBAction)finishAddItemEditing:(id)sender {
-    NSString *newItemText = [[sender text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+- (void)dismissKeyboard:(id)sender {
+    // Fake editing did end
+    [self didEndOnExit:sender];
+    [self.addItemTextField resignFirstResponder];
+}
 
-    [self resetAddItemTextField];
+- (IBAction)didEndOnExit:(id)sender {
+    NSString *newItemText = [[self.addItemTextField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if ([newItemText length] > 0)
+        [self insertNewObject:newItemText];
+
+    [self.addItemTextField setText:@""];
+    [self.addItemTextField reloadInputViews];
     
-    if ([newItemText length] == 0) return;
-    
-    // Add items to list
-    [self insertNewObject:newItemText];
+    if ([sender isKindOfClass: [UITextField class]]) {
+        DDLogVerbose(@"User pressed \"Next\" button");
+        [self setEndEditing:NO];
+    }
+    else {
+        if ([sender isKindOfClass: [UIBarButtonItem class]])
+            DDLogVerbose(@"User pressed \"Done\" button");
+        else
+            DDLogVerbose(@"User pressed unknown button?!");
+        [self setEndEditing:YES];
+    }
 }
 
-- (void)dismissKeyboardOnTap:(UITapGestureRecognizer *)tapRecognizer {
-    // Abort keyboard input
-    [[self view] endEditing: YES]; // [self.addItemTextField resignFirstResponder];
-    [self resetAddItemTextField];
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    DDLogVerbose(@"Should end Editing?");
+    return [self endEditing];
 }
 
--(void)resetAddItemTextField {
-    [self.addItemTextField setText:nil];
+- (IBAction)editingDidEnd:(id)sender {
+    [self.navigationItem.leftBarButtonItem setEnabled:YES];
     [self.addItemTextField setPlaceholder:@"New item..."];
-    self.navigationItem.leftBarButtonItem.enabled = YES; // self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (IBAction)archiveItems:(id)sender {
     // TODO: Implement
     UIActionSheet *archiveItemsConfirm = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Archive items", nil];
     [archiveItemsConfirm showFromToolbar:[[self navigationController] toolbar]];
+}
+
+#pragma mark - IBAction methods
+
+- (UIView *)createInputAccessoryView {
+    UIToolbar *inputAccessoryView = [[UIToolbar alloc] init];
+    [inputAccessoryView setBarStyle:UIBarStyleBlackTranslucent];
+    [inputAccessoryView sizeToFit];
+    
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissKeyboard:)];
+    
+    NSArray *items = [NSArray arrayWithObjects:spaceItem, doneItem, nil];
+    [inputAccessoryView setItems:items animated:YES];
+    return inputAccessoryView;
 }
 
 #pragma mark - Table View

@@ -71,6 +71,7 @@
 		C6C5828E16BEB69A0031B348 /* HUDFailure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C5828A16BEB69A0031B348 /* HUDFailure@2x.png */; };
 		C6C5828F16BEB69A0031B348 /* HUDSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C5828B16BEB69A0031B348 /* HUDSuccess.png */; };
 		C6C5829016BEB69A0031B348 /* HUDSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C5828C16BEB69A0031B348 /* HUDSuccess@2x.png */; };
+		C6C7A4D916C1B7C50083DED3 /* Shopping.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C6C7A4D816C1B7C50083DED3 /* Shopping.gpx */; };
 		C6E6044316B96C2A00370A18 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6E6044116B96C2A00370A18 /* MainStoryboard.storyboard */; };
 		C6E6049216B97A0C00370A18 /* PinIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E6047B16B97A0C00370A18 /* PinIcon.png */; };
 		C6E6049316B97A0C00370A18 /* PinIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E6047C16B97A0C00370A18 /* PinIcon@2x.png */; };
@@ -180,6 +181,7 @@
 		C6C5828A16BEB69A0031B348 /* HUDFailure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HUDFailure@2x.png"; sourceTree = "<group>"; };
 		C6C5828B16BEB69A0031B348 /* HUDSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HUDSuccess.png; sourceTree = "<group>"; };
 		C6C5828C16BEB69A0031B348 /* HUDSuccess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HUDSuccess@2x.png"; sourceTree = "<group>"; };
+		C6C7A4D816C1B7C50083DED3 /* Shopping.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Shopping.gpx; sourceTree = "<group>"; };
 		C6E6044216B96C2A00370A18 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C6E6047B16B97A0C00370A18 /* PinIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinIcon.png; sourceTree = "<group>"; };
 		C6E6047C16B97A0C00370A18 /* PinIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PinIcon@2x.png"; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 		C6ADE42716B9276100C0268B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6C7A4D816C1B7C50083DED3 /* Shopping.gpx */,
 				C6ADE42816B9276100C0268B /* ShobitTests-Info.plist */,
 				C6ADE42916B9276100C0268B /* InfoPlist.strings */,
 			);
@@ -573,6 +576,7 @@
 				C6C5828E16BEB69A0031B348 /* HUDFailure@2x.png in Resources */,
 				C6C5828F16BEB69A0031B348 /* HUDSuccess.png in Resources */,
 				C6C5829016BEB69A0031B348 /* HUDSuccess@2x.png in Resources */,
+				C6C7A4D916C1B7C50083DED3 /* Shopping.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

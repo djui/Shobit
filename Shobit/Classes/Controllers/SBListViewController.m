@@ -54,15 +54,14 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [self.addItemTextField setAllowsEditingTextAttributes:NO];
     
     // Progress HUD
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-	[self.view addSubview:HUD];
-	HUD.mode = MBProgressHUDModeCustomView;
-	HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUDSuccess.png"]];
-	HUD.labelText = @"Archived";
-    [HUD showAnimated:YES whileExecutingBlock:^{
-        sleep(3);
-    }];
-
+//    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+//	[self.view addSubview:HUD];
+//	HUD.mode = MBProgressHUDModeCustomView;
+//	HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUDSuccess.png"]];
+//	HUD.labelText = @"Archived";
+//    [HUD showAnimated:YES whileExecutingBlock:^{
+//        sleep(3);
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {

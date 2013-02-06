@@ -174,8 +174,6 @@ typedef void (^AFKissXMLRequestFailureBlock)(NSURLRequest *, NSHTTPURLResponse *
             annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             [annotationView setEnabled:YES];
             [annotationView setCanShowCallout:YES];
-            [annotationView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
-            [annotationView setLeftCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeInfoDark]];
         } else {
             annotationView.annotation = annotation;
         }
@@ -186,18 +184,11 @@ typedef void (^AFKissXMLRequestFailureBlock)(NSURLRequest *, NSHTTPURLResponse *
     return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    StoreLocation *location = (StoreLocation*)view.annotation;
-    
-    NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
-    [location.mapItem openInMapsWithLaunchOptions:launchOptions];
-}
-
 #pragma mark - Privates
 
 #define RECENTMAPREGIONKEY @"recentMapRegion"
 
-- (Boolean)hasRecentMapRegion {
+- (BOOL)hasRecentMapRegion {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults dataForKey:RECENTMAPREGIONKEY];
     if (data == nil) return NO;
@@ -217,67 +208,5 @@ typedef void (^AFKissXMLRequestFailureBlock)(NSURLRequest *, NSHTTPURLResponse *
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:data forKey:RECENTMAPREGIONKEY];
 }
-
-// #define RECENTMAPREGIONKEY @"recentMapRegion"
-// #define LATKEY @"lat"
-// #define LONKEY @"lon"
-// #define LATDELTAKEY @"latDelta"
-// #define LONDELTAKEY @"lonDelta"
-//
-//- (Boolean)hasRecentMapRegion {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    return [defaults boolForKey:RECENTMAPREGIONKEY];
-//}
-//
-//- (MKCoordinateRegion)recentMapRegion {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    MKCoordinateRegion region;
-//    region.center.latitude = [defaults doubleForKey:LATKEY];
-//    region.center.longitude = [defaults doubleForKey:LONKEY];
-//    region.span.latitudeDelta = [defaults doubleForKey:LATDELTAKEY];
-//    region.span.longitudeDelta = [defaults doubleForKey:LONDELTAKEY];
-//    return region;
-//}
-//
-//- (void)setRecentMapRegion:(MKCoordinateRegion)region {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setDouble:region.center.latitude forKey:LATKEY];
-//    [defaults setDouble:region.center.longitude forKey:LONKEY];
-//    [defaults setDouble:regionsetDouble:region.span.latitudeDelta forKey:LATDELTAKEY];
-//    [defaults setDouble:region.span.longitudeDelta forKey:LONDELTAKEY];
-//    [defaults setBool:YES forKey:RECENTMAPREGIONKEY];
-//}
-
-// #define RECENTMAPREGIONKEY @"recentMapRegion"
-// #define LATKEY @"lat"
-// #define LONKEY @"lon"
-// #define LATDELTAKEY @"latDelta"
-// #define LONDELTAKEY @"lonDelta"
-//
-//- (Boolean)hasRecentMapRegion {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    return [defaults dictionaryForKey:RECENTMAPREGIONKEY] != nil;
-//}
-//
-//- (MKCoordinateRegion)recentMapRegion {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *dict = [defaults dictForKey:RECENTMAPREGIONKEY];
-//    MKCoordinateRegion region;
-//    region.center.latitude = [[dict objectForKey:LATKEY] doubleValue];
-//    region.center.longitude = [[dict objectForKey:LONKEY] doubleValue];
-//    region.span.latitudeDelta = [[dict objectForKey:LATDELTAKEY] doubleValue];
-//    region.span.longitudeDelta = [[dict objectForKey:LONDELTAKEY] doubleValue];
-//    return region;
-//}
-//
-//- (void)setRecentMapRegion:(MKCoordinateRegion)region {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSNumber *lat = [NSNumber numberWithDouble:region.center.latitude];
-//    NSNumber *lon = [NSNumber numberWithDouble:region.center.longitude];
-//    NSNumber *latDelta = [NSNumber numberWithDouble:region.span.latitudeDelta];
-//    NSNumber *lonDelta = [NSNumber numberWithDouble:region.span.longitudeDelta];
-//    NSDictionary *region = [NSDictionary dictionaryWithObjectsAndKeys:lat, LATKEY, lon, LONKEY, latDelta, LATDELTAKEY, lonDelta, LONDELTAKEY, nil];
-//    [defaults addObject:region ForKey:RECENTMAPREGIONKEY];
-//}
 
 @end

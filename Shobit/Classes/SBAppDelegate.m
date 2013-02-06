@@ -27,6 +27,7 @@
     // Add logger
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithRed: 0 green: 0.5 blue: 0 alpha:1.0] backgroundColor:nil forFlag:LOG_FLAG_INFO];
     
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;

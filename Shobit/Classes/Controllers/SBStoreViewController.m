@@ -20,13 +20,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static const int ddLogLevel = LOG_LEVEL_WARN;
 #endif
 
+#define OSM_API_URL "http://open.mapquestapi.com/xapi/api/0.6"
+
 @interface SBStoreViewController ()
 
 @property (strong, nonatomic) IBOutlet UIView *storeView;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
-
 
 @implementation SBStoreViewController
 
@@ -143,7 +144,7 @@ typedef void (^EnumerationBlock)(id, NSUInteger, BOOL *);
     double left = self.mapView.region.center.longitude - self.mapView.region.span.longitudeDelta;
     double top = self.mapView.region.center.latitude + self.mapView.region.span.latitudeDelta;
     double right = self.mapView.region.center.longitude + self.mapView.region.span.longitudeDelta;
-    NSString *wsURL = [NSString stringWithFormat:@"http://open.mapquestapi.com/xapi/api/0.6/node[shop=*][bbox=%f,%f,%f,%f]", left, bottom, right, top];
+    NSString *wsURL = [NSString stringWithFormat:@"%s/node[shop=*][bbox=%f,%f,%f,%f]", OSM_API_URL, left, bottom, right, top];
     DDLogVerbose(@"%@", wsURL);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:wsURL]];
     AFKissXMLRequestOperation *operation = [AFKissXMLRequestOperation XMLDocumentRequestOperationWithRequest:request success:searchShopsSuccess failure:searchShopsFailure];

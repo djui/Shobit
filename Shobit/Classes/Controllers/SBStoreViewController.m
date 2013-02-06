@@ -86,19 +86,23 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 typedef void (^AFKissXMLRequestSuccessBlock)(NSURLRequest *, NSHTTPURLResponse *, DDXMLDocument *);
 typedef void (^AFKissXMLRequestFailureBlock)(NSURLRequest *, NSHTTPURLResponse *, NSError *, DDXMLDocument *);
+typedef void (^EnumerationBlock)(id, NSUInteger, BOOL *);
 
 - (void)scanRegionForShops {
     AFKissXMLRequestSuccessBlock searchShopsSuccess = ^(NSURLRequest *request, NSHTTPURLResponse *response, DDXMLDocument *xmlDoc) {
         DDLogVerbose(@"xmlDoc: %@", xmlDoc);
         
         // Clean up map annotations
-        for (id<MKAnnotation> annotation in self.mapView.annotations) {
-            [self.mapView removeAnnotation:annotation];
-        }
+        EnumerationBlock cleanupAnnotations = ^(id<MKAnnotation> annotation, NSUInteger idx, BOOL *stop) {
+            // Skip current location annotation
+            if (![annotation isKindOfClass:[MKUserLocation class]])
+                [self.mapView removeAnnotation:annotation];
+        };
+        [self.mapView.annotations enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:cleanupAnnotations];
         
         // Traverse DOM and extract shops
         NSArray *nodes = [xmlDoc.rootElement elementsForName:@"node"];
-        int amountShops = 0;
+        NSUInteger amountShops = 0;
         for (DDXMLElement *node in nodes) {
             double storeLatitude = [node attributeForName:@"lat"].stringValue.doubleValue;
             double storeLongitude = [node attributeForName:@"lon"].stringValue.doubleValue;

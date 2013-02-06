@@ -134,11 +134,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     }
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    DDLogVerbose(@"Should end Editing?");
-    return [self endEditing];
-}
-
 - (IBAction)editingDidEnd:(id)sender {
     [self.navigationItem.leftBarButtonItem setEnabled:YES];
     [self.addItemTextField setPlaceholder:@"New item..."];
@@ -148,6 +143,13 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     // TODO: Implement
     UIActionSheet *archiveItemsConfirm = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Archive items", nil];
     [archiveItemsConfirm showFromToolbar:[[self navigationController] toolbar]];
+}
+
+#pragma mark - UITextField delegate methods
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    DDLogVerbose(@"Should end Editing?");
+    return [self endEditing];
 }
 
 #pragma mark - IBAction methods

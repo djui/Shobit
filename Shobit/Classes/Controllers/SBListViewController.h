@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Uwe Dauernheim. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
+#import <UIKit/UIKit.h>
 
 @interface SBListViewController : UITableViewController <NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UITextFieldDelegate>
 

@@ -77,23 +77,32 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem image="ArchiveAllIcon.png" width="36" id="ltb-EL-PGw">
+                        <barButtonItem style="done" systemItem="trash" id="ESG-MS-LoM">
+                            <color key="tintColor" red="0.8862745098" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="archiveItems:" destination="12" id="2US-QP-8rb"/>
+                                <action selector="emptyList:" destination="12" id="ckz-nA-hds"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="bme-oq-GWp"/>
-                        <barButtonItem image="PinIcon.png" width="36" id="ndr-TD-aRZ">
+                        <barButtonItem image="ArchiveAllIcon.png" style="done" id="ltb-EL-PGw">
+                            <connections>
+                                <action selector="archiveCheckedItems:" destination="12" id="iz3-IK-71x"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="ICA" id="36">
+                        <barButtonItem key="rightBarButtonItem" image="PinIcon.png" width="36" id="ndr-TD-aRZ">
                             <connections>
                                 <segue destination="J1Z-Lt-2Y9" kind="modal" identifier="showMap" modalTransitionStyle="partialCurl" id="gFT-dJ-UZE"/>
                             </connections>
                         </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="ICA" id="36"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addItemTextField" destination="7As-Ap-xqg" id="qJA-nw-qSq"/>
-                        <outlet property="archiveButton" destination="ltb-EL-PGw" id="DPJ-CR-rlE"/>
+                        <outlet property="archiveDoneButton" destination="ltb-EL-PGw" id="WcG-A0-gn4"/>
+                        <outlet property="buttonSpacer" destination="bme-oq-GWp" id="GsU-TK-tj2"/>
+                        <outlet property="emptyListButton" destination="ESG-MS-LoM" id="p64-z4-0KK"/>
                         <outlet property="listTableView" destination="13" id="eCe-xj-R68"/>
                     </connections>
                 </tableViewController>
@@ -136,31 +145,6 @@
         <image name="ArchiveAllIcon.png" width="21" height="20"/>
         <image name="PinIcon.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SBListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="archiveItems:"/>
-                <relationship kind="action" name="didEndOnExit:"/>
-                <relationship kind="action" name="editingDidBegin:"/>
-                <relationship kind="action" name="editingDidEnd:"/>
-                <relationship kind="outlet" name="addItemTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="archiveButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="listTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SBStoreViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SBStoreViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="forgetStore:"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="storeView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

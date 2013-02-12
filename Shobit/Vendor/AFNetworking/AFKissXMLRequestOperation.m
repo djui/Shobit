@@ -81,7 +81,7 @@ static dispatch_queue_t kissxml_request_operation_processing_queue() {
 #pragma mark - AFHTTPRequestOperation
 
 + (NSSet *)acceptableContentTypes {
-    return [NSSet setWithObjects:@"application/xml", @"text/xml", @"text/html", @"application/xhtml+xml", nil];
+    return [NSSet setWithObjects:@"application/xml", @"text/xml", @"text/html", @"application/xhtml+xml", @"application/osm3s+xml", nil];
 }
 
 + (BOOL)canProcessRequest:(NSURLRequest *)request {
